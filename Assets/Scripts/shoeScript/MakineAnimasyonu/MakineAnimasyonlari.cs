@@ -11,7 +11,8 @@ public class MakineAnimasyonlari : MonoBehaviour
     float _timer;
     bool _korukYonu;
 
-    [SerializeField] bool _animCalisma;
+
+    [SerializeField] public bool _animCalisma;
 
     // Start is called before the first frame update
     void Start()
