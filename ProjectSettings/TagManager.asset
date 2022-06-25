@@ -33,6 +33,7 @@ TagManager:
   - GladyatorKontrol
   - Kolezyum
   - DemirciMerkez
+  - PresAparati
   layers:
   - Default
   - TransparentFX

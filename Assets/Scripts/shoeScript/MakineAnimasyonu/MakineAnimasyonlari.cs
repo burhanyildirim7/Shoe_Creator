@@ -56,7 +56,7 @@ public class MakineAnimasyonlari : MonoBehaviour
         _ustBant.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(_bandHizi, 0);
         _altBant.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(_bandHizi, 0);
 
-        _lamba.transform.eulerAngles = new Vector3(_lamba.transform.eulerAngles.x, _lamba.transform.eulerAngles.y, _lamba.transform.eulerAngles.z+ _donusHizi*5);
+       
 
 
         for (int i = 0; i < _carkListesi.Count; i++)
@@ -86,6 +86,7 @@ public class MakineAnimasyonlari : MonoBehaviour
                 _korukHizi -= 0.05f;
                 _koruk1.transform.localScale = new Vector3(1, _korukHizi, 1);
                 _koruk2.transform.localScale = new Vector3(1, 1.3f - _korukHizi, 1);
+                _lamba.transform.eulerAngles = new Vector3(_lamba.transform.eulerAngles.x, _lamba.transform.eulerAngles.y, _lamba.transform.eulerAngles.z + _donusHizi * 5);
                 if (_korukHizi < 0.3f)
                 {
                     _korukYonu = false;
@@ -100,6 +101,7 @@ public class MakineAnimasyonlari : MonoBehaviour
 
 
         }
+
 
 
     }    
