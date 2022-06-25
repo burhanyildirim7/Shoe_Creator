@@ -20,7 +20,7 @@ public class MakineAnimasyonlari : MonoBehaviour
         _bandHizi = 0;
         _donusHizi = 1f;
         _korukHizi=0.01f;
-        _animCalisma = false;
+        //_animCalisma = false;
         _korukYonu = false;
 
     }
@@ -52,7 +52,6 @@ public class MakineAnimasyonlari : MonoBehaviour
     private void MaterialOffsetleme()
     {
         _bandHizi+=0.01f;
-        Debug.Log(_bandHizi);
         _ustBant.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(_bandHizi, 0);
         _altBant.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(_bandHizi, 0);
 

@@ -10,7 +10,7 @@ public class PresinCalismasi : MonoBehaviour
     [SerializeField] GameObject _MakineAnimasyonScripti,_presAparati, _presUcu, _presBacaklari, _presBasmaEfect, _renkPuskurtmeEfect;
     [SerializeField] Vector3 _presUcuAltNoktasi, _presUcuUstNoktasi, _presBacaklariMaxScale, _presBacaklariMinScale;
     [SerializeField] GameObject _baslangicNoktasi,_ortaNoktasi,_finishNoktasi,_spreyNoktasi;
-    [SerializeField] GameObject _degisekObje1,_degisecekObje2;
+    [SerializeField] GameObject _degisekObje1;
     [SerializeField] List<GameObject> _girisSirasi = new List<GameObject>(), _cikisSirasi = new List<GameObject>();
 
     private bool _presBasmaEfectControl, _spreyEfectControl;
@@ -30,36 +30,34 @@ public class PresinCalismasi : MonoBehaviour
         {
             if (_presAnimCalis && _presBasmaEfectControl==false)
             {
-                _MakineAnimasyonScripti.GetComponent<MakineAnimasyonlari>()._animCalisma = true;
                 presBasma();
                 
             }
             else
             {
-                _MakineAnimasyonScripti.GetComponent<MakineAnimasyonlari>()._animCalisma = false;
             }
             if (transform.childCount == 0 && transform.localPosition == _baslangicNoktasi.transform.localPosition)
             {
-               
-                for (int i = _girisSirasi.Count-1; i >= 0; i--)
+
+                for (int i = _girisSirasi.Count - 1; i >= 0; i--)
                 {
-                  
+
                     if (_girisSirasi[i].transform.childCount == 1)
                     {
-                     
+
                         GameObject tempObj = _girisSirasi[i].transform.GetChild(0).gameObject;
                         tempObj.transform.parent = transform;
                         tempObj.transform.DOJump(transform.position, 1f, 1, 1f).OnComplete(() => ortayaGit());
-                        
-                                             
                         break;
                     }
-
+                    if (i == 0)
+                    {
+                        _MakineAnimasyonScripti.GetComponent<MakineAnimasyonlari>()._animCalisma = false;
+                    }
                 }
             }
 
-
-
+            
 
 
         }
@@ -121,6 +119,7 @@ public class PresinCalismasi : MonoBehaviour
     }
     private void ortayaGit()
     {
+      _MakineAnimasyonScripti.GetComponent<MakineAnimasyonlari>()._animCalisma = true;
         transform.DOLocalMove(_ortaNoktasi.transform.localPosition, 1f).OnComplete(() => _presAnimCalis = true); 
 
     }
@@ -128,7 +127,7 @@ public class PresinCalismasi : MonoBehaviour
     {
 
         _renkPuskurtmeEfect.SetActive(true);
-        transform.DOLocalMove(_renkPuskurtmeEfect.transform.localPosition, 2f).OnComplete(() => bekleme());
+        transform.DOLocalMove(_renkPuskurtmeEfect.transform.localPosition, 2f).OnComplete(() => StartCoroutine(bekleme()));
 
     }
     private IEnumerator bekleme()
@@ -140,7 +139,7 @@ public class PresinCalismasi : MonoBehaviour
     }
     private void finishPozisyonu()
     {
-
+        
         for (int i = 0; i <_cikisSirasi.Count; i++)
         {
             if (_cikisSirasi[i].transform.childCount == 0)
