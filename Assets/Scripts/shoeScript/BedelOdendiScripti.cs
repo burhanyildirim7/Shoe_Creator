@@ -8,6 +8,7 @@ public class BedelOdendiScripti : MonoBehaviour
 {
     private Text _bedelTexti;
     [SerializeField] string _makinePlayerPrefAdi;
+    
 
     // Start is called before the first frame update
     void Start()

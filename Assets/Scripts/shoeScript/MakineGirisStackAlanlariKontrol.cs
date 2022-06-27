@@ -21,7 +21,6 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
         }
         for (int i = 0; i < _girisSirasi1.Count; i++)
         {
-            Debug.Log(_makineAdi + "++++3");
             if (PlayerPrefs.GetInt(_makineAdi + i) >= 0)
             {
                 Instantiate(_stackObjesi[PlayerPrefs.GetInt(_makineAdi + i)], _girisSirasi1[i].transform);
