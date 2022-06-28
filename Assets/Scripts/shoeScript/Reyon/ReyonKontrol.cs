@@ -52,26 +52,36 @@ public class ReyonKontrol : MonoBehaviour
     {
         if (other.tag=="money")
         {
-            
-            _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
-
+           /* if (other.gameObject.transform.position.y<transform.position.y+0.1)
+            {
+                _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
+            }*/
         }
     }
     private void OnTriggerStay(Collider other)
     {
         _reyonSayac1 += Time.deltaTime;
-        if (other.tag == "Player"&&_reyonSayac1>0.1f&& PlayerPrefs.GetInt(_reyonAdi) >= 10)
+        if (other.tag == "Player"&&_reyonSayac1>1f && PlayerPrefs.GetInt(_reyonAdi) >=10)
         {
+            PlayerPrefs.SetInt(_reyonAdi, PlayerPrefs.GetInt(_reyonAdi) - 10);
             _reyonSayac1 = 0;
             paraOde(other.gameObject);
+        }
+        if (other.tag == "money")
+        {
+            if (other.gameObject.transform.position.y < transform.position.y + 0.1)
+            {
+
+                _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
+            }
         }
     }
 
     private void paraOde(GameObject playerObj)
     {
-            GameObject _tempPara = Instantiate(_paraMObjesi, playerObj.transform);
+            GameObject _tempPara = Instantiate(_paraMObjesi, playerObj.transform.position,new Quaternion(-45,0,0,1));
             _tempPara.transform.DOJump(transform.position, 2f, 1, 1f).OnComplete(() => Destroy(_tempPara));
-            PlayerPrefs.SetInt(_reyonAdi, PlayerPrefs.GetInt(_reyonAdi) - 10);
+            
     }
 
 
