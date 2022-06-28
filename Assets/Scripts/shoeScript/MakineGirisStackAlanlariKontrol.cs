@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MakineGirisStackAlanlariKontrol : MonoBehaviour
 {
     [SerializeField] string _makineAdi;
+    [SerializeField] Text _adetText;
+    [SerializeField] bool _adetYazilacak;
     [SerializeField] List<GameObject> _girisSirasi1 = new List<GameObject>(), _stackObjesi=new List<GameObject>();
-    
+    private List<int> _adetSayacList = new List<int>();
+    private float _adetSayacTimer;
     void Start()
     {
-        
+        _adetSayacTimer = 0;
 
         if (PlayerPrefs.GetInt(_makineAdi + "ilkseferstackkontrtolu")==0)
         {
@@ -30,7 +34,28 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+        _adetSayacList.Clear();
+        for (int i = 0; i < _girisSirasi1.Count; i++)
+        {
 
+            if (_girisSirasi1[i].gameObject.transform.childCount==1)
+            {
+                _adetSayacList.Add(1);
+            }
+            else
+            {
+
+            }
+
+        }
+        if (_adetYazilacak)
+        {
+            _adetText.text = _adetSayacList.Count + "/10";
+        }
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         ListeDuzenleme();
