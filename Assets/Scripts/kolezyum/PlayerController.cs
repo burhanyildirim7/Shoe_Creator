@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         GameController.instance.score = 0;
         transform.position = new Vector3(0, transform.position.y, 0);
         GetComponent<Collider>().enabled = true;
-        GetComponent<SirtCantasiScript>().SirtCantasiLevelStart();
+
 
     }
 

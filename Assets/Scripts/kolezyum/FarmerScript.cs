@@ -13,9 +13,9 @@ public class FarmerScript : MonoBehaviour
 
     [SerializeField] private Animator _farmerAnimator;
 
-    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private NavMeshAgent _agent;//ALLLLLL
 
-    private Transform _point;
+    private Transform _point;//ALLLLLL
 
     // Start is called before the first frame update
     private void Awake()
@@ -30,12 +30,12 @@ public class FarmerScript : MonoBehaviour
 
         //_agent.SetDestination(_ambarNoktasi.transform.position);
 
-        _point = _ambarNoktasi.transform;
+        _point = _ambarNoktasi.transform;//ALLLLLL---START POINTI VERILMESI GEREKIYOR-YOKSA HATA VERIR-POINT BOS KALMAMAMLI NAVMESHIN OZELLIGI
     }
 
-    private void Update()
+    private void Update()//ALLLLLL--UPDATTE CALISCAK FIXEDUPDATE
     {
-        if (GameController.instance.isContinue == true)
+        if (GameController.instance.isContinue == true)//ALLLLLL
         {
             SetDestination(_point);
         }
@@ -82,7 +82,7 @@ public class FarmerScript : MonoBehaviour
     }
 
 
-    private void SetDestination(Transform point)
+    private void SetDestination(Transform point)//ALLLLLL
     {
         _agent.SetDestination(point.position);
     }

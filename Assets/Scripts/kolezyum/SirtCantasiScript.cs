@@ -9,11 +9,11 @@ public class SirtCantasiScript : MonoBehaviour
     [Header("Objeler Toplandiğinda Parent Atanacak Obje")]
     public GameObject _sirtCantasiObject;
     [Header("Objelerin Yerlesecegi Transform Listesi")]
-    public List<Transform> _yerlesmeNoktalari = new List<Transform>();
+    public List<Transform> _yerlesmeNoktalari = new List<Transform>();//KUCAK TRANSFORMLARI
     [Header("Cantada Bulunan Objelerin Tamami")]
     public List<GameObject> _cantadakiObjeler = new List<GameObject>();
     [Header("Cantada Bulunan Saman Objeleri")]
-    public List<GameObject> _cantadakiSamanObjeleri = new List<GameObject>();
+    public List<GameObject> _cantadakiSamanObjeleri = new List<GameObject>();// YENİ OBJE OLURSA BURAYA EKLE
     public List<GameObject> _cantadakiAltinObjeleri = new List<GameObject>();
     public List<GameObject> _cantadakiEtObjeleri = new List<GameObject>();
     public List<GameObject> _cantadakiDemirObjeleri = new List<GameObject>();
@@ -48,7 +48,7 @@ public class SirtCantasiScript : MonoBehaviour
         CantayiHizala();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)//ELE ALMA
     {
         if (other.gameObject.tag == "SamanBalyasi")
         {
@@ -231,13 +231,13 @@ public class SirtCantasiScript : MonoBehaviour
         }
     }
 
-    public void SamanCek(Transform malKabulNoktasi)
+    public void SamanCek(Transform malKabulNoktasi)//BİR YERE ELDEKİNİ GÖNDERME-MALKABULNOKTASINA  GİDECEĞİ TRANSFORMU AT
     {
         if (_cantadakiSamanObjeleri.Count > 0)
         {
             int sira = _cantadakiSamanObjeleri.Count - 1;
             _cantadakiSamanObjeleri[_cantadakiSamanObjeleri.Count - 1].gameObject.transform.parent = null;
-            _cantadakiSamanObjeleri[_cantadakiSamanObjeleri.Count - 1].gameObject.transform.DOMove(malKabulNoktasi.position, 0.5f);
+            _cantadakiSamanObjeleri[_cantadakiSamanObjeleri.Count - 1].gameObject.transform.DOMove(malKabulNoktasi.position, 0.5f);//DOJUMP KULLAN
             _cantadakiSamanObjeleri[_cantadakiSamanObjeleri.Count - 1].gameObject.transform.DOLocalRotate(Vector3.zero, 0.5f);
             _cantadakiSamanObjeleri.RemoveAt(_cantadakiSamanObjeleri.Count - 1);
             _cantadakiObjeSayisi--;
@@ -332,9 +332,6 @@ public class SirtCantasiScript : MonoBehaviour
 
             }
         }
-
-
-
     }
 
     private void CantayiHizala()
@@ -343,60 +340,6 @@ public class SirtCantasiScript : MonoBehaviour
         {
             _sirtCantasiObject.transform.GetChild(i).transform.position = _yerlesmeNoktalari[i].transform.position;
         }
-
-
-
     }
 
-    public void SirtCantasiLevelStart()
-    {
-        int cantadakiobjesayi = _cantadakiObjeler.Count;
-        for (int i = 0; i < cantadakiobjesayi; i++)
-        {
-            Destroy(_cantadakiObjeler[0].gameObject);
-            _cantadakiObjeler.RemoveAt(0);
-
-        }
-
-        int cantadakisamanobjesayi = _cantadakiSamanObjeleri.Count;
-        for (int i = 0; i < cantadakisamanobjesayi; i++)
-        {
-            Destroy(_cantadakiSamanObjeleri[0].gameObject);
-            _cantadakiSamanObjeleri.RemoveAt(0);
-
-        }
-
-        int cantadakialtinobjesayi = _cantadakiAltinObjeleri.Count;
-        for (int i = 0; i < cantadakialtinobjesayi; i++)
-        {
-            Destroy(_cantadakiAltinObjeleri[0].gameObject);
-            _cantadakiAltinObjeleri.RemoveAt(0);
-
-        }
-
-        int cantadakietobjesayi = _cantadakiEtObjeleri.Count;
-        for (int i = 0; i < cantadakietobjesayi; i++)
-        {
-            Destroy(_cantadakiEtObjeleri[0].gameObject);
-            _cantadakiEtObjeleri.RemoveAt(0);
-
-        }
-
-        int cantadakidemirobjesayi = _cantadakiDemirObjeleri.Count;
-        for (int i = 0; i < cantadakidemirobjesayi; i++)
-        {
-            Destroy(_cantadakiDemirObjeleri[0].gameObject);
-            _cantadakiDemirObjeleri.RemoveAt(0);
-
-        }
-
-        _cantadakiObjeSayisi = 0;
-
-        _ilkTarlaAktif = false;
-
-        _samanSayisiText.text = _cantadakiSamanObjeleri.Count.ToString();
-        _altinSayisiText.text = _cantadakiAltinObjeleri.Count.ToString();
-        _etSayisiText.text = _cantadakiEtObjeleri.Count.ToString();
-        _demirSayisiText.text = _cantadakiDemirObjeleri.Count.ToString();
-    }
 }
