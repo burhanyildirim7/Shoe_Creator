@@ -122,6 +122,8 @@ public class ObjeToplamaPlayer : MonoBehaviour
         {
             _playerStackAlanlari[0].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero, 0.01f);
             _playerStackAlanlari[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero,0.01f) ;
+            _playerStackAlanlari[0].transform.GetChild(0).transform.DOLocalMove(Vector3.zero, 0.01f);
+            _playerStackAlanlari[i].transform.GetChild(0).transform.DOLocalMove(Vector3.zero, 0.01f);
 
             if (_playerStackAlanlari[i].transform.childCount == 1)
             {

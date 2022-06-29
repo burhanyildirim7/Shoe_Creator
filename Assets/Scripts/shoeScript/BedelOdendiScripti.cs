@@ -18,6 +18,8 @@ public class BedelOdendiScripti : MonoBehaviour
         if (PlayerPrefs.GetInt(_makinePlayerPrefAdi) == 1)
         {
             transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f).OnComplete(()=> transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f));
+            
             transform.GetChild(1).gameObject.SetActive(false);
         }
         else
@@ -37,6 +39,7 @@ public class BedelOdendiScripti : MonoBehaviour
 
                 PlayerPrefs.SetInt(_makinePlayerPrefAdi, 1);
                 transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f).OnComplete(() => transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f));
                 transform.GetChild(1).gameObject.SetActive(false);
             }
             else

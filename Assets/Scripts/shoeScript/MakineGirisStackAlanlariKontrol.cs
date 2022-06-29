@@ -27,9 +27,10 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
         }
         for (int i = 0; i < _girisSirasi1.Count; i++)
         {
-            _girisSirasi1[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero,0.01f);
+
             if (PlayerPrefs.GetInt(_makineAdi + i) >= 0)
             {
+                Debug.Log(PlayerPrefs.GetInt(_makineAdi + i));
                 GameObject _GeciciObje=
                 Instantiate(_stackObjesi[PlayerPrefs.GetInt(_makineAdi + i)], _girisSirasi1[i].transform);
                 if (PlayerPrefs.GetInt(_makineAdi + i)>7)
@@ -49,12 +50,14 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
         _adetSayacList.Clear();
         for (int i = 0; i < _girisSirasi1.Count; i++)
         {
-            _girisSirasi1[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero, 0.01f);
+         
             if (_girisSirasi1[i].gameObject.transform.childCount==1)
             {
+                _girisSirasi1[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero, 0.01f);
                 _adetSayacList.Add(1);
             }
             else
@@ -90,6 +93,7 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
                     if (_girisSirasi1[i].transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.name == _stackObjesi[k].transform.GetChild(0).gameObject.name)
                     {
                         PlayerPrefs.SetInt(_makineAdi+i,k);
+                        Debug.Log(PlayerPrefs.GetInt(_makineAdi + i));
                         break;
                     }
                     else

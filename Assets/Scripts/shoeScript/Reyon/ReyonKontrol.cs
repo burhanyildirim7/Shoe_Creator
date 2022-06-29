@@ -18,7 +18,10 @@ public class ReyonKontrol : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("ReyonAcildi"+_reyonAdi)==1)
         {
+
             _acilacakObje.SetActive(true);
+            _acilacakObje.transform.localScale = Vector3.zero;
+            _acilacakObje.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
             _kapanacakObj.SetActive(false);
             if (_expandMi)
             {
@@ -52,6 +55,8 @@ public class ReyonKontrol : MonoBehaviour
         if (_reyonBedelText.text == "$0")
         {
             _acilacakObje.SetActive(true);
+            _acilacakObje.transform.localScale = Vector3.zero;
+            _acilacakObje.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
             _kapanacakObj.SetActive(false);
             if (_expandMi)
             {
