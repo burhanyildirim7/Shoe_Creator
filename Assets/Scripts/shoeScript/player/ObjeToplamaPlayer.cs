@@ -5,12 +5,6 @@ using DG.Tweening;
 
 public class ObjeToplamaPlayer : MonoBehaviour
 {
-    //toplanabilir tagında olanları-stacklenebilirObjeler listesindeki objeler ile karşılaştır.
-    //listedeki kaçıncı sıradaki obje olduğunu öğren
-    //bu numarayı int bir değişkene kaydet ve bu değişkeni switchcase ile 14 ayrı maddede işle
-    // case lerde malzemenin hangi listeye kaydolacağını belirlersin ve kaydedersin
-    //objeyi tanımlar tanımlamaz tagını toplanamaz yap
-    //
     [SerializeField] List<GameObject> _playerStackAlanlari = new List<GameObject>(), _stacklenebilirObjeler = new List<GameObject>();
     public List<GameObject> _cantadakilerinSayisiIcinListe = new List<GameObject>();
     private List<GameObject>
@@ -43,7 +37,6 @@ public class ObjeToplamaPlayer : MonoBehaviour
         _cantaDuzenlemeSayaci = 0;
         _cantaDuzenlemeSayaci2 = 0;
 
-        //---ayrı fonksiyona çekilecek-yeni obje eklendiğinde ve çıktığında bir kere çalışacak.
         _cantadakilerinSayisiIcinListe.Clear();
         for (int i = 0; i < _playerStackAlanlari.Count; i++)
         {
