@@ -198,27 +198,22 @@ public class ObjeToplamaPlayer : MonoBehaviour
 
     private void ListeBelirleme(GameObject _gelenObje)
     {
-        Debug.Log("LISTE BELIRLEMEDE");
         for (int i = 0; i < _stacklenebilirObjeler.Count; i++)
         {
-            Debug.Log("LISTE BELIRLEMEDE-FOR CALISTI");
             if (_gelenObje.transform.GetChild(0).gameObject.name==_stacklenebilirObjeler[i].transform.GetChild(0).gameObject.name)
             {
 
                 _stacklenebilirObjeSirasi = i+1;
-                Debug.Log("LISTE BELIRLEMEDE-For da-SIRASI BELIRLENDI:"+_stacklenebilirObjeSirasi);
                 break;
             }
             else
             {
                 _stacklenebilirObjeSirasi = -1;
-                Debug.Log("LISTE BELIRLEMEDE-For da-SIRASI BELIRLENEMEDI:" + _stacklenebilirObjeSirasi);
             }
         }
         switch (_stacklenebilirObjeSirasi)
         {
             case 1:
-                Debug.Log("HAM DERİ ALDIN");
                 _hamManda.Add(_gelenObje);
                 _cantadakilerinSayisiIcinListe.Add(_gelenObje);
                 break;
@@ -298,7 +293,6 @@ public class ObjeToplamaPlayer : MonoBehaviour
             case 1:
                 if (_hamManda.Count>0)
                 {
-                    Debug.Log("HAM DERİ gonderıyorum");
                     _hamManda[_hamManda.Count - 1].transform.parent = null;
                     _hamManda[_hamManda.Count - 1].transform.DOJump(_teslimatNoktasi.transform.position,3f,1,0.5f);
                     _hamManda[_hamManda.Count - 1].transform.DORotate(Vector3.zero, 0.5f);
