@@ -25,11 +25,38 @@ public class JoystickController : MonoBehaviour
 
             if (_rigidbody.velocity.x != 0 || _rigidbody.velocity.z != 0)
             {
-                _animator.SetBool("run", true);
+                if (transform.GetComponent<ObjeToplamaPlayer>()._cantadakilerinSayisiIcinListe.Count>0)
+                {
+                    _animator.SetBool("carryidle", false);
+                    _animator.SetBool("carryrun", true);
+                    _animator.SetBool("run", false);
+                }
+                else
+                {
+                    _animator.SetBool("carryidle", false);
+                    _animator.SetBool("carryrun", false);
+                    _animator.SetBool("run", true);
+
+                }
             }
             else
             {
-                _animator.SetBool("run", false);
+                if (transform.GetComponent<ObjeToplamaPlayer>()._cantadakilerinSayisiIcinListe.Count > 0)
+                {
+                    _animator.SetBool("carryrun", false);
+                    _animator.SetBool("run", false);
+                    _animator.SetBool("carryidle", true);
+
+                }
+                else
+                {
+                    _animator.SetBool("run", false);
+                    _animator.SetBool("carryrun", false);
+                    _animator.SetBool("carryidle", false);
+
+                }
+
+
             }
 
             //transform.Rotate(0, _floatingJoystick.Horizontal * 1f, 0);

@@ -7,9 +7,10 @@ using DG.Tweening;
 public class ReyonKontrol : MonoBehaviour
 {
     [SerializeField] string _reyonAdi;
+    [SerializeField] bool _expandMi;
     [SerializeField] Text _reyonBedelText;
     [SerializeField] int _reyonAcilisBedeli;
-    [SerializeField] GameObject _acilacakObje, _kapanacakObj, _paraMObjesi;
+    [SerializeField] GameObject _acilacakObje, _kapanacakObj,_kapanacakObj2, _paraMObjesi;
     private float _reyonSayac1, _reyonSayac2;
 
 
@@ -19,12 +20,20 @@ public class ReyonKontrol : MonoBehaviour
         {
             _acilacakObje.SetActive(true);
             _kapanacakObj.SetActive(false);
+            if (_expandMi)
+            {
+                _kapanacakObj2.SetActive(false);
+            }
 
         }
         else
         {
             _acilacakObje.SetActive(false);
             _kapanacakObj.SetActive(true);
+            if (_expandMi)
+            {
+                _kapanacakObj2.SetActive(true);
+            }
         }
         if (PlayerPrefs.GetInt("ReyonIlki" + _reyonAdi) == 0)
         {
@@ -44,6 +53,10 @@ public class ReyonKontrol : MonoBehaviour
         {
             _acilacakObje.SetActive(true);
             _kapanacakObj.SetActive(false);
+            if (_expandMi)
+            {
+                _kapanacakObj2.SetActive(false);
+            }
             PlayerPrefs.SetInt("ReyonAcildi" + _reyonAdi, 1);
         }
     }
@@ -61,7 +74,7 @@ public class ReyonKontrol : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _reyonSayac1 += Time.deltaTime;
-        if (other.tag == "Player"&&_reyonSayac1>1f && PlayerPrefs.GetInt(_reyonAdi) >=10)
+        if (other.tag == "Player"&&_reyonSayac1>0.1f && PlayerPrefs.GetInt(_reyonAdi) >=10)
         {
             PlayerPrefs.SetInt(_reyonAdi, PlayerPrefs.GetInt(_reyonAdi) - 10);
             _reyonSayac1 = 0;
@@ -80,7 +93,7 @@ public class ReyonKontrol : MonoBehaviour
     private void paraOde(GameObject playerObj)
     {
             GameObject _tempPara = Instantiate(_paraMObjesi, playerObj.transform.position,new Quaternion(-45,0,0,1));
-            _tempPara.transform.DOJump(transform.position, 2f, 1, 1f).OnComplete(() => Destroy(_tempPara));
+            _tempPara.transform.DOJump(transform.position, 2f, 1,1f).OnComplete(() => Destroy(_tempPara));
             
     }
 

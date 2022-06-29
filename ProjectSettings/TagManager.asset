@@ -35,6 +35,10 @@ TagManager:
   - DemirciMerkez
   - PresAparati
   - money
+  - toplanabilirler
+  - StackAlani
+  - GirisAlani
+  - toplanamazlar
   layers:
   - Default
   - TransparentFX

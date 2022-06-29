@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4770465491289813147}
   m_Layer: 0
   m_Name: MandaDerisiIslenmis
-  m_TagString: Untagged
+  m_TagString: toplanabilirler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

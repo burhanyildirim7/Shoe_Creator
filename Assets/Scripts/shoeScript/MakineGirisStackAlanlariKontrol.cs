@@ -9,6 +9,7 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
     [SerializeField] Text _adetText;
     [SerializeField] bool _adetYazilacak;
     [SerializeField] List<GameObject> _girisSirasi1 = new List<GameObject>(), _stackObjesi=new List<GameObject>();
+    [SerializeField] public int _stacklenecekObjeNumarasi;
     private List<int> _adetSayacList = new List<int>();
     private float _adetSayacTimer;
     void Start()
@@ -27,7 +28,17 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
         {
             if (PlayerPrefs.GetInt(_makineAdi + i) >= 0)
             {
+                GameObject _GeciciObje=
                 Instantiate(_stackObjesi[PlayerPrefs.GetInt(_makineAdi + i)], _girisSirasi1[i].transform);
+                if (PlayerPrefs.GetInt(_makineAdi + i)>7)
+                {
+                    _GeciciObje.transform.GetChild(0).gameObject.SetActive(false);
+                    _GeciciObje.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                else
+                {
+
+                }
             }
             else
             {

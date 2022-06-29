@@ -151,7 +151,7 @@ public class PresinCalismasi : MonoBehaviour
             {
                 Destroy(transform.GetChild(0).gameObject);
             }
-            Instantiate(_degisekObje1,transform);
+            Instantiate(_degisekObje1,transform).transform.tag="toplanamazlar";
             if (_ayakkabiUretimMakinesi)
             {
                 transform.DOLocalMove(_spreyNoktasi.transform.localPosition, 1f).OnComplete(() => boyamaNoktasi());
@@ -212,7 +212,8 @@ public class PresinCalismasi : MonoBehaviour
             {
                 GameObject tempObj = transform.GetChild(0).gameObject;
                 tempObj.transform.parent=_cikisSirasi[i].transform;
-                tempObj.transform.DOJump(tempObj.transform.parent.transform.position,3f,1,1f);
+                tempObj.transform.DOJump(tempObj.transform.parent.transform.position,3f,1,1f).OnComplete(()=> tempObj.transform.tag = "toplanabilirler");
+                
                 transform.DOLocalMove(_baslangicNoktasi.transform.localPosition, 0.01f);
                 break;
             }

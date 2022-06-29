@@ -166,7 +166,7 @@ public class KamyonTetikleme : MonoBehaviour
             {
                 GameObject _tempTasinanObj = Instantiate(_tasinanObj, _StacklemeBaslangici.transform);
                 _tempTasinanObj.transform.parent = _stackNoktalari[k].transform;
-                _tempTasinanObj.transform.eulerAngles = new Vector3(0, -90, 0);
+                _tempTasinanObj.transform.eulerAngles = new Vector3(0, -135, 0);
                 _tempTasinanObj.transform.localScale =Vector3.zero;
                 _tempTasinanObj.transform.DOScale(new Vector3(1,1,1),0.5f);
                 _tempTasinanObj.transform.DOJump(_stackNoktalari[k].transform.position, 1f, 1, 1f);

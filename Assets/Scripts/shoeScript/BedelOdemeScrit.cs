@@ -18,6 +18,7 @@ public class BedelOdemeScrit : MonoBehaviour
         {
             PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi+"ilkSefer",1);
             PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, _bedelDegeri);
+            PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi+"2", _bedelDegeri);
             _bedelAlaniTexti.text = "$" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi);
         }
         else
@@ -32,7 +33,7 @@ public class BedelOdemeScrit : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        _paraIcinTimer = 0;
+        //_paraIcinTimer = 0;
         if (other.gameObject.tag=="money")
         {
             PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)-10);
@@ -47,10 +48,16 @@ public class BedelOdemeScrit : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _paraIcinTimer += Time.deltaTime;
-        if (other.tag=="Player"&& _paraIcinTimer>0.2f)
+        if (other.gameObject.tag=="Player"&& PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2")>0)
         {
-            _paraIcinTimer = 0;
-            paraOde(other.gameObject);
+            if (_paraIcinTimer > 0.2f)
+            {
+                PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi + "2", PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2") - 10);
+                _paraIcinTimer = 0;
+                paraOde(other.gameObject);
+                Debug.Log("DEEEEGEGERERER:" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2"));
+
+            }
         }
 
     }
@@ -60,7 +67,8 @@ public class BedelOdemeScrit : MonoBehaviour
     }
     private void paraOde(GameObject playerObj)
     {
-        GameObject _tempPara = Instantiate(_paraObj, playerObj.transform);
+        GameObject _tempPara = Instantiate(_paraObj,playerObj.transform.GetChild(2).transform);
+
         _tempPara.transform.DOJump(transform.position, 2f, 1, 1f).OnComplete(()=>Destroy(_tempPara)) ;
 
     }
