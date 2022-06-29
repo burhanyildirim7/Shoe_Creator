@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class MakineGirisStackAlanlariKontrol : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
         }
         for (int i = 0; i < _girisSirasi1.Count; i++)
         {
+            _girisSirasi1[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero,0.01f);
             if (PlayerPrefs.GetInt(_makineAdi + i) >= 0)
             {
                 GameObject _GeciciObje=
@@ -50,7 +52,7 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
         _adetSayacList.Clear();
         for (int i = 0; i < _girisSirasi1.Count; i++)
         {
-
+            _girisSirasi1[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero, 0.01f);
             if (_girisSirasi1[i].gameObject.transform.childCount==1)
             {
                 _adetSayacList.Add(1);

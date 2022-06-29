@@ -67,12 +67,13 @@ public class ObjeToplamaPlayer : MonoBehaviour
         if (other.tag == "toplanabilirler"&& _cantaDuzenlemeSayaci2>0.1f)
         {
             _cantaDuzenlemeSayaci2 = 0;
-            other.tag = "toplanamazlar";
+            
 
             for (int i = 0; i < _playerStackAlanlari.Count; i++)
             {
                 if (_playerStackAlanlari[i].transform.childCount == 0)
                 {
+                    other.tag = "toplanamazlar";
                     other.transform.parent = _playerStackAlanlari[i].transform;
                     other.transform.DOJump(other.transform.parent.transform.position, 1f, 1, 0.2f).OnComplete(() => StackDuzelt(other.gameObject));
                     ListeBelirleme(other.gameObject);
@@ -119,6 +120,8 @@ public class ObjeToplamaPlayer : MonoBehaviour
     {
         for (int i = 1; i < _playerStackAlanlari.Count; i++)
         {
+            _playerStackAlanlari[0].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero, 0.01f);
+            _playerStackAlanlari[i].transform.GetChild(0).transform.DOLocalRotate(Vector3.zero,0.01f) ;
 
             if (_playerStackAlanlari[i].transform.childCount == 1)
             {
@@ -142,7 +145,7 @@ public class ObjeToplamaPlayer : MonoBehaviour
                 }
 
                 _playerStackAlanlari[i].transform.localPosition = new Vector3(0, _playerStackAlanlari[i - 1].transform.localPosition.y + _playerStackNoktasiAraligi, 0);
-
+                
             }
         }
 
