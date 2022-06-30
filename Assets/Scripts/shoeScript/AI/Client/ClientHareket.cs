@@ -39,7 +39,7 @@ public class ClientHareket : MonoBehaviour
 
     [SerializeField] Animator _ClientAnim;
     private bool AnimIcin;
-
+    [SerializeField] Animator _kasiyer1, _kasiyer2;
 
 
     private void Awake()
@@ -50,7 +50,7 @@ public class ClientHareket : MonoBehaviour
     void Start()
     {
 
-        magazada = false;
+           magazada = false;
         geriDondu = false;
         paraOdendi = false;
         sirada = false;
@@ -61,7 +61,8 @@ public class ClientHareket : MonoBehaviour
         AyakkabiYeriEkle();
         AyakkabiDoldur();
         _ClientAnim.SetBool("walking", true);
-
+        _kasiyer1 = _aiHareketKontrol.Kasiyer1;
+        _kasiyer2 = _aiHareketKontrol.Kasiyer2;
     }
 
 
@@ -245,7 +246,14 @@ public class ClientHareket : MonoBehaviour
         _ClientAnim.SetBool("carryidle", false);
         _ClientAnim.SetBool("carrywalk", false);
 
-
+        if (_kasaNumber == 1)
+        {
+            _kasiyer1.SetBool("pickitem", true);
+        }
+        else
+        {
+            _kasiyer2.SetBool("pickitem", true);
+        }
         //yield return new WaitForSeconds(1f);
 
         //_alinacakAyakkabiObjesi.transform.DOJump(_aiHareketKontrol.KasaPointleri[_kasaNumber].GetComponent<KasaScript>()._gidilecekKasaKonumlari[1].transform.position, 3f, 1, 0.5f);
@@ -260,6 +268,14 @@ public class ClientHareket : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        if (_kasaNumber == 1)
+        {
+            _kasiyer1.SetBool("pickitem", false);
+        }
+        else
+        {
+            _kasiyer2.SetBool("pickitem", false);
+        }
         _alinacakAyakkabiObjesi.transform.DOLocalJump(Vector3.zero, 3f, 1, 0.5f);//KOLI SEKLINDE ELINE GELIYOR
         _ClientAnim.SetBool("carryidle", true);
 
@@ -332,6 +348,7 @@ public class ClientHareket : MonoBehaviour
                         _alinacakAyakkabiObjesi.transform.parent.transform.parent.transform.GetChild(0).gameObject.GetComponent<MakineGirisStackAlanlariKontrol>().AyakkabiCek(_alinacakAyakkabiObjesi, _stackNoktasi);//TAM OLARAK BURADA
 
                         _kasaNumber = i;
+
                         _kasayaGit = true;
                         _kasaAriyor = false;
                         break;
