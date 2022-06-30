@@ -393,6 +393,7 @@ MonoBehaviour:
   _gidilecekAyakkabilar: []
   _gidecegiYol: 0
   _alinacakAyakkabiObjesi: {fileID: 0}
+  _ClientAnim: {fileID: 176260930317998010}
 --- !u!1 &2194004293596576298
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3475665095301303144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.133, z: 0.335}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -12,16 +12,18 @@ public class ReyonKontrol : MonoBehaviour
     [SerializeField] int _reyonAcilisBedeli;
     [SerializeField] GameObject _acilacakObje, _kapanacakObj,_kapanacakObj2, _paraMObjesi;
     private float _reyonSayac1, _reyonSayac2;
+    private Vector3 tempScale;
 
 
     void Start()
     {
+        tempScale = _acilacakObje.transform.localScale;
         if (PlayerPrefs.GetInt("ReyonAcildi"+_reyonAdi)==1)
         {
 
             _acilacakObje.SetActive(true);
             _acilacakObje.transform.localScale = Vector3.zero;
-            _acilacakObje.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+            _acilacakObje.transform.DOScale(tempScale, 0.3f);
             _kapanacakObj.SetActive(false);
             if (_expandMi)
             {
