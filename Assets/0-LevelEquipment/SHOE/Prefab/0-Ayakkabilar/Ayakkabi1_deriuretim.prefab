@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 7610714029899206679}
   - {fileID: 7610714029426034388}
+  - {fileID: 2865917526901169415}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -339,7 +340,7 @@ GameObject:
   - component: {fileID: 7610714029426034388}
   m_Layer: 0
   m_Name: BoyaliAyakkabi_1
-  m_TagString: Untagged
+  m_TagString: Bos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,3 +483,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1256890573776288600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 1074141359573983963}
+    m_Modifications:
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467367642483277029, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_Name
+      value: Koli
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467367642483277029, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+--- !u!4 &2865917526901169415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3941942283984332383, guid: 4ceda09a1a3cd475f998991259770c85, type: 3}
+  m_PrefabInstance: {fileID: 1256890573776288600}
+  m_PrefabAsset: {fileID: 0}

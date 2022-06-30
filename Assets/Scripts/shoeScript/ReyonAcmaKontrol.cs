@@ -6,9 +6,11 @@ public class ReyonAcmaKontrol : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> Reyonlar = new List<GameObject>(), _acilacakAlanlar = new List<GameObject>();
-    private int _deger,_acilanSayisi,_aradeger,expandDeger,_expandAraDeger;
+    private int _deger, _acilanSayisi, _aradeger, expandDeger, _expandAraDeger;
     private float _timer;
-    
+
+    public List<GameObject> _stackNoktalari = new List<GameObject>();
+
     void Start()
     {
         _acilanSayisi = PlayerPrefs.GetInt("acilanSayisi");
@@ -25,6 +27,8 @@ public class ReyonAcmaKontrol : MonoBehaviour
             Reyonlar[i].SetActive(true);
         }
 
+        StackNoktasiBul();
+
     }
 
     // Update is called once per frame
@@ -32,9 +36,9 @@ public class ReyonAcmaKontrol : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (_timer>0.2f)
+        if (_timer > 0.2f)
         {
-            
+
             _aradeger = 0;
             _acilanSayisi = 0;
 
@@ -43,7 +47,7 @@ public class ReyonAcmaKontrol : MonoBehaviour
                 if (_acilacakAlanlar[i].activeSelf == true)
                 {
                     _aradeger++;
-                    if (_aradeger==3)
+                    if (_aradeger == 3)
                     {
                         _acilanSayisi += 3;
                         _aradeger = 0;
@@ -52,10 +56,22 @@ public class ReyonAcmaKontrol : MonoBehaviour
                 }
 
             }
-            PlayerPrefs.SetInt("acilanSayisi",_acilanSayisi);
+            PlayerPrefs.SetInt("acilanSayisi", _acilanSayisi);
             yeniAlanAc();
         }
     }
+
+    private void StackNoktasiBul()
+    {
+        for (int i = 0; i < _acilacakAlanlar.Count; i++)
+        {
+            for (int k = 2; k < _acilacakAlanlar[i].gameObject.transform.GetChild(0).gameObject.transform.childCount; k++)
+            {
+                _stackNoktalari.Add(_acilacakAlanlar[i].gameObject.transform.GetChild(0).GetChild(k).gameObject);
+            }
+        }
+    }
+
     private void yeniAlanAc()
     {
         _deger = 3 + _acilanSayisi;
