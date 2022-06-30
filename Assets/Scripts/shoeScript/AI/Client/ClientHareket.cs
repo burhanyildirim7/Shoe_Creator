@@ -336,7 +336,7 @@ public class ClientHareket : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
 
-        _alinacakAyakkabiObjesi.transform.DOJump(_aiHareketKontrol.KasaPointleri[_kasaNumber].GetComponent<KasaScript>()._gidilecekKasaKonumlari[0].transform.position, 3f, 1, 0.5f);
+        _alinacakAyakkabiObjesi.transform.DOJump(_aiHareketKontrol.KasaPointleri[_kasaNumber].GetComponent<KasaScript>()._gidilecekKasaKonumlari[0].transform.position, 3f, 1, 0.5f);// ELINDEN KASANIN SAGINA GIDIYOR
 
         //yield return new WaitForSeconds(1f);
 
@@ -348,11 +348,11 @@ public class ClientHareket : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        _alinacakAyakkabiObjesi.transform.DOJump(_aiHareketKontrol.KasaPointleri[_kasaNumber].GetComponent<KasaScript>()._gidilecekKasaKonumlari[2].transform.position, 3f, 1, 0.5f);
+        _alinacakAyakkabiObjesi.transform.DOJump(_aiHareketKontrol.KasaPointleri[_kasaNumber].GetComponent<KasaScript>()._gidilecekKasaKonumlari[2].transform.position, 3f, 1, 0.5f);//KASANIN SAGINDAN SOLUNA GECIYOR
 
         yield return new WaitForSeconds(1f);
 
-        _alinacakAyakkabiObjesi.transform.DOLocalJump(Vector3.zero, 3f, 1, 0.5f);
+        _alinacakAyakkabiObjesi.transform.DOLocalJump(Vector3.zero, 3f, 1, 0.5f);//KOLI SEKLINDE ELINE GELIYOR
         _alinacakAyakkabiObjesi.transform.DORotate(new Vector3(0, 45, 0), 0.5f);
 
         yield return new WaitForSeconds(1f);
@@ -399,7 +399,7 @@ public class ClientHareket : MonoBehaviour
         }
     }
 
-    private void KasaBul()
+    private void KasaBul()// IFE GIRDIGINDE AYAKKABI ALIYOR
     {
         for (int i = 0; i < _aiHareketKontrol.KasaPointleri.Count; i++)
         {
@@ -413,7 +413,7 @@ public class ClientHareket : MonoBehaviour
                     if (_aiHareketKontrol.KasaPointleri[i].gameObject.GetComponent<siraDoluluk>().doluMu == false)
                     {
                         _aiHareketKontrol.KasaPointleri[i].gameObject.GetComponent<siraDoluluk>().doluMu = true;
-                        _alinacakAyakkabiObjesi.transform.parent.transform.parent.transform.GetChild(0).gameObject.GetComponent<MakineGirisStackAlanlariKontrol>().AyakkabiCek(_alinacakAyakkabiObjesi, _stackNoktasi);
+                        _alinacakAyakkabiObjesi.transform.parent.transform.parent.transform.GetChild(0).gameObject.GetComponent<MakineGirisStackAlanlariKontrol>().AyakkabiCek(_alinacakAyakkabiObjesi, _stackNoktasi);//TAM OLARAK BURADA
                         _kasaNumber = i;
                         _kasayaGit = true;
                         _kasaAriyor = false;
