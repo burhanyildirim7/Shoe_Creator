@@ -39,6 +39,9 @@ TagManager:
   - StackAlani
   - GirisAlani
   - toplanamazlar
+  - Dolu
+  - Bos
+  - ClientAI
   layers:
   - Default
   - TransparentFX

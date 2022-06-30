@@ -34,6 +34,7 @@ public class ClientHareket : MonoBehaviour
         baslnagicSetPointi.transform.position = transform.position;
         _setPoint = baslnagicSetPointi.transform;
         sayac = 0;
+
     }
 
     // Update is called once per frame
@@ -167,7 +168,11 @@ public class ClientHareket : MonoBehaviour
     }
 
 
+    private void yerBulma()
+    {
 
+
+    }
         private void SetDestination(Transform point)
     {
         _agent.SetDestination(point.position);
