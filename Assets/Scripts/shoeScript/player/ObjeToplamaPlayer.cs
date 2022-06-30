@@ -472,10 +472,5 @@ public class ObjeToplamaPlayer : MonoBehaviour
         }
 
     }
-    private void ObjeGonderme()
-    {
 
-
-
-    }
 }

@@ -8,6 +8,7 @@ public class ReyonAcmaKontrol : MonoBehaviour
     [SerializeField] List<GameObject> Reyonlar = new List<GameObject>(), _acilacakAlanlar = new List<GameObject>();
     private int _deger,_acilanSayisi,_aradeger,expandDeger,_expandAraDeger;
     private float _timer;
+    
     void Start()
     {
         _acilanSayisi = PlayerPrefs.GetInt("acilanSayisi");
@@ -23,6 +24,7 @@ public class ReyonAcmaKontrol : MonoBehaviour
         {
             Reyonlar[i].SetActive(true);
         }
+
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class ReyonAcmaKontrol : MonoBehaviour
 
         if (_timer>0.2f)
         {
+            
             _aradeger = 0;
             _acilanSayisi = 0;
 

@@ -93,7 +93,7 @@ public class MakineGirisStackAlanlariKontrol : MonoBehaviour
                     if (_girisSirasi1[i].transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.name == _stackObjesi[k].transform.GetChild(0).gameObject.name)
                     {
                         PlayerPrefs.SetInt(_makineAdi+i,k);
-                        Debug.Log(PlayerPrefs.GetInt(_makineAdi + i));
+                       
                         break;
                     }
                     else
