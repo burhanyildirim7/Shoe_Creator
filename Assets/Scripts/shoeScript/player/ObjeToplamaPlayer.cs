@@ -58,12 +58,30 @@ public class ObjeToplamaPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-   
+        if (other.tag == "toplanabilirler" )
+        {
+            _cantaDuzenlemeSayaci2 = 0;
+
+
+            for (int i = 0; i < _playerStackAlanlari.Count; i++)
+            {
+                if (_playerStackAlanlari[i].transform.childCount == 0)
+                {
+                    other.tag = "toplanamazlar";
+                    other.transform.parent = _playerStackAlanlari[i].transform;
+                    other.transform.DOJump(other.transform.parent.transform.position, 1f, 1, 0.2f).OnComplete(() => StackDuzelt(other.gameObject));
+                    ListeBelirleme(other.gameObject);
+                    MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+                    break;
+                }
+            }
+        }
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        _cantaDuzenlemeSayaci2 += Time.deltaTime;
+       /* _cantaDuzenlemeSayaci2 += Time.deltaTime;
         if (other.tag == "toplanabilirler"&& _cantaDuzenlemeSayaci2>0.1f)
         {
             _cantaDuzenlemeSayaci2 = 0;
@@ -81,7 +99,7 @@ public class ObjeToplamaPlayer : MonoBehaviour
                     break;
                 }
             }
-        }
+        }*/
         _cantaDuzenlemeSayaci += Time.deltaTime;
         if (other.tag=="GirisAlani"&& _cantaDuzenlemeSayaci>0.1f)
         {
@@ -96,6 +114,8 @@ public class ObjeToplamaPlayer : MonoBehaviour
                 {
                     Debug.Log("TESLIMAT NOKTASI BULDUM");
                     _gonderilecekKonum = other.gameObject.transform.parent.transform.GetChild(i).gameObject;
+                    MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
                     ListedenCikartma(_objeTuru, _gonderilecekKonum);
                     break;
                 }
