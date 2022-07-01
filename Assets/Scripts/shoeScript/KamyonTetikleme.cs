@@ -89,7 +89,15 @@ public class KamyonTetikleme : MonoBehaviour
             {
                 _transfereBasla = false;
                 _transferSayac = 0;
-                _kareAlanBedel.text = _bedelTextDegeri.ToString();
+                if (_kamyonNo!=1)
+                {
+                    _kareAlanBedel.text = _bedelTextDegeri.ToString();
+                }
+                else
+                {
+
+                }
+                
                 _buyText.text = "BUY";
                 PlayerPrefs.SetInt("KamyonKareAlanTextDegeri" + _kamyonNo, _bedelTextDegeri);
                 _kamyonAnim.SetBool("runforward", false);
@@ -98,7 +106,7 @@ public class KamyonTetikleme : MonoBehaviour
             }
         }
 
-        if (_kareAlanBedel.text=="$0" && _doluluk == false)
+        if (_kareAlanBedel.text=="$0" && _doluluk == false&& _kamyonNo!=1)
         {
             
             _gitti = true;
@@ -108,16 +116,37 @@ public class KamyonTetikleme : MonoBehaviour
             _buyText.text = "Wait";
         }
 
+
        
 
     }
     //TRIGERLAR------------------------------------------
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag=="Player")
+        {
+            if (_kamyonNo==1)
+            {
+                _gitti = true;
+                _hareketNoktasi.SetActive(true);
+                _kamyonAnim.SetBool("runforward", true);
+                _kareAlanBedel.text = "...";
+                _buyText.text = "Wait";
+            }
+
+        }
         if (other.gameObject == _yukIndırmeColliderObj && _gitti)
         {
             _kamyonAnim.SetBool("runforward", false);
             _transfereBasla = true;
+            if (PlayerPrefs.GetInt("HamDeriIsleme") < 1)
+            {
+                StartCoroutine(GameObject.FindGameObjectWithTag("OnBoardingController").GetComponent<OnBoardingController>().HamDeriIsleme());
+                PlayerPrefs.SetInt("HamDeriIsleme", 1);
+            }
+            else
+            {
+            }
         }
         _paraAktarimTimer = 0;
         if (other.gameObject.tag == "money")
@@ -135,7 +164,7 @@ public class KamyonTetikleme : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _paraAktarimTimer += Time.deltaTime;
-        if (other.tag == "Player" && _doluluk == false&&_paraAktarimTimer>0.2f&& _paraAktar)
+        if (other.tag == "Player" && _doluluk == false&&_paraAktarimTimer>0.2f&& _paraAktar&& _kamyonNo!=1)
         {
             _paraAktarimTimer = 0;
             paraOde(other.gameObject);

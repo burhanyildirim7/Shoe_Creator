@@ -6,24 +6,20 @@ using DG.Tweening;
 
 public class ReyonKontrol : MonoBehaviour
 {
-    [SerializeField] string _reyonAdi;
+    [SerializeField] public string _reyonAdi;
     [SerializeField] bool _expandMi;
     [SerializeField] Text _reyonBedelText;
-    [SerializeField] int _reyonAcilisBedeli;
+    [SerializeField] public int _reyonAcilisBedeli;
     [SerializeField] GameObject _acilacakObje, _kapanacakObj,_kapanacakObj2, _paraMObjesi;
     private float _reyonSayac1, _reyonSayac2;
-    private Vector3 tempScale;
 
 
     void Start()
     {
-        tempScale = _acilacakObje.transform.localScale;
         if (PlayerPrefs.GetInt("ReyonAcildi"+_reyonAdi)==1)
         {
 
             _acilacakObje.SetActive(true);
-            _acilacakObje.transform.localScale = Vector3.zero;
-            _acilacakObje.transform.DOScale(tempScale, 0.3f);
             _kapanacakObj.SetActive(false);
             if (_expandMi)
             {
@@ -57,8 +53,6 @@ public class ReyonKontrol : MonoBehaviour
         if (_reyonBedelText.text == "$0")
         {
             _acilacakObje.SetActive(true);
-            _acilacakObje.transform.localScale = Vector3.zero;
-            _acilacakObje.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
             _kapanacakObj.SetActive(false);
             if (_expandMi)
             {
@@ -70,23 +64,12 @@ public class ReyonKontrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="money")
-        {
-           /* if (other.gameObject.transform.position.y<transform.position.y+0.1)
-            {
-                _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
-            }*/
-        }
+
     }
     private void OnTriggerStay(Collider other)
     {
         _reyonSayac1 += Time.deltaTime;
-        if (other.tag == "Player"&&_reyonSayac1>0.1f && PlayerPrefs.GetInt(_reyonAdi) >=10)
-        {
-            PlayerPrefs.SetInt(_reyonAdi, PlayerPrefs.GetInt(_reyonAdi) - 10);
-            _reyonSayac1 = 0;
-            paraOde(other.gameObject);
-        }
+
         if (other.tag == "money")
         {
             if (other.gameObject.transform.position.y < transform.position.y + 0.1)
@@ -94,6 +77,11 @@ public class ReyonKontrol : MonoBehaviour
 
                 _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
             }
+        }
+        if (other.tag=="BedelOdemeMoney")
+        {
+            BedelOdeUlen();
+            Destroy(other.gameObject);
         }
     }
 
@@ -103,7 +91,14 @@ public class ReyonKontrol : MonoBehaviour
             _tempPara.transform.DOJump(transform.position, 2f, 1,1f).OnComplete(() => Destroy(_tempPara));
             
     }
-
+    public void BedelOdeUlen()
+    {
+        PlayerPrefs.SetInt(_reyonAdi, PlayerPrefs.GetInt(_reyonAdi) - 10);
+        // _bedelText.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _bedelText.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
+        _reyonBedelText.text ="$" + PlayerPrefs.GetInt(_reyonAdi).ToString();
+        //_objeAcmaScript.ObjeAcmaKontrolEt();
+        ;
+    }
 
 
 }

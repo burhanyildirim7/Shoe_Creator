@@ -160,7 +160,14 @@ public class PresinCalismasi : MonoBehaviour
             else
             {
                 transform.DOLocalMove(_finishNoktasi.transform.localPosition, 1f).OnComplete(() => finishPozisyonu());
-
+                if (PlayerPrefs.GetInt("AyakkabiUretimi") < 1)
+                {
+                    StartCoroutine(GameObject.FindGameObjectWithTag("OnBoardingController").GetComponent<OnBoardingController>().AyakkabiUretimi());
+                    PlayerPrefs.SetInt("AyakkabiUretimi", 1);
+                }
+                else
+                {
+                }
             }
         }
     }
@@ -197,6 +204,14 @@ public class PresinCalismasi : MonoBehaviour
     private void bekleme()
     {
         Destroy(tempSpreyEfectObj);
+        if (PlayerPrefs.GetInt("reyonaTasi") < 1)
+        {
+            StartCoroutine(GameObject.FindGameObjectWithTag("OnBoardingController").GetComponent<OnBoardingController>().reyonaTasi());
+            PlayerPrefs.SetInt("reyonaTasi", 1);
+        }
+        else
+        {
+        }
         transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
         _MakineAnimasyonScripti.GetComponent<MakineAnimasyonlari>()._animCalisma = true;

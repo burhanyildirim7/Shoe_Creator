@@ -7,8 +7,8 @@ using DG.Tweening;
 public class BedelOdemeScrit : MonoBehaviour
 {
     [SerializeField] Text _bedelAlaniTexti;
-    [SerializeField] string _bedelTextiPlayerPrefAdi;
-    [SerializeField] int _bedelDegeri;
+    [SerializeField] public string _bedelTextiPlayerPrefAdi;
+    [SerializeField] public int _bedelDegeri;
     [SerializeField] GameObject _paraObj;
     private float _paraIcinTimer;
     // Start is called before the first frame update
@@ -34,7 +34,7 @@ public class BedelOdemeScrit : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //_paraIcinTimer = 0;
-        if (other.gameObject.tag=="money")
+        /*if (other.gameObject.tag=="money")
         {
             PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)-10);
             if (PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)<=0)
@@ -43,12 +43,17 @@ public class BedelOdemeScrit : MonoBehaviour
             }
             _bedelAlaniTexti.text = "$" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi);
 
+        }*/
+        if (other.tag == "BedelOdemeMoney")
+        {
+            BedelOdeUlen();
+            Destroy(other.gameObject);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         _paraIcinTimer += Time.deltaTime;
-        if (other.gameObject.tag=="Player"&& PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2")>0)
+       /* if (other.gameObject.tag=="Player"&& PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2")>0)
         {
             if (_paraIcinTimer > 0.2f)
             {
@@ -58,7 +63,7 @@ public class BedelOdemeScrit : MonoBehaviour
                 Debug.Log("DEEEEGEGERERER:" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2"));
 
             }
-        }
+        }*/
 
     }
     private void OnTriggerExit(Collider other)
@@ -71,6 +76,13 @@ public class BedelOdemeScrit : MonoBehaviour
 
         _tempPara.transform.DOJump(transform.position, 2f, 1, 1f).OnComplete(()=>Destroy(_tempPara)) ;
 
+    }
+    public void BedelOdeUlen()
+    {
+        PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)-10);
+        // _bedelText.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _bedelText.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
+        _bedelAlaniTexti.text = "$" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi).ToString();
+        //_objeAcmaScript.ObjeAcmaKontrolEt();
     }
 
 
