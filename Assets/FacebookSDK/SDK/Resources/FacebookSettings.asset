@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 1069612900637554
+  - 395503669223286
   appLabels:
-  - Great Coliseum!
+  - Shoe Creator!
   cookie: 1
   logging: 1
   status: 1
