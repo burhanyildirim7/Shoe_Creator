@@ -64,25 +64,16 @@ public class ReyonKontrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        _reyonSayac1 += Time.deltaTime;
-
-        if (other.tag == "money")
-        {
-            if (other.gameObject.transform.position.y < transform.position.y + 0.1)
-            {
-
-                _reyonBedelText.text = "$" + PlayerPrefs.GetInt(_reyonAdi);
-            }
-        }
-        if (other.tag=="BedelOdemeMoney")
+        if (other.tag == "BedelOdemeMoney")
         {
             BedelOdeUlen();
             Destroy(other.gameObject);
         }
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+
     }
 
     private void paraOde(GameObject playerObj)

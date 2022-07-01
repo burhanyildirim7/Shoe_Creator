@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class KamyonTetikleme : MonoBehaviour
 {
-    [SerializeField] int _kamyonNo;
+    [SerializeField] public int _kamyonNo;
     [SerializeField] Text _kareAlanBedel,_buyText;
     [SerializeField] GameObject _kamyonObj,_tasinanObj,_hareketNoktasi,_yukIndırmeColliderObj,_StacklemeBaslangici,_fullObjesi,_paraObjesi;
     [SerializeField] List<GameObject> _stackNoktalari=new List<GameObject>();
@@ -148,29 +148,11 @@ public class KamyonTetikleme : MonoBehaviour
             {
             }
         }
-        _paraAktarimTimer = 0;
-        if (other.gameObject.tag == "money")
+        if (other.tag == "BedelOdemeMoney" && _kamyonNo != 1 && _doluluk == false && _paraAktar)
         {
-            PlayerPrefs.SetInt("KamyonKareAlanTextDegeri" + _kamyonNo, PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + _kamyonNo) - 10);
-            if (PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + _kamyonNo) <= 0)
-            {
-                _paraAktar = false;
-                PlayerPrefs.SetInt("KamyonKareAlanTextDegeri" + _kamyonNo, 0);
-            }
-            _kareAlanBedel.text = "$" + PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + _kamyonNo);
-           
+            BedelOdeUlen();
+            Destroy(other.gameObject);
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        _paraAktarimTimer += Time.deltaTime;
-        if (other.tag == "Player" && _doluluk == false&&_paraAktarimTimer>0.2f&& _paraAktar&& _kamyonNo!=1)
-        {
-            _paraAktarimTimer = 0;
-            paraOde(other.gameObject);
-
-        }
-
     }
     private void OnTriggerExit(Collider other)
     {
@@ -212,5 +194,10 @@ public class KamyonTetikleme : MonoBehaviour
     {
         PlayerPrefs.SetInt("KamyonKareAlanTextDegeri" + _kamyonNo, _bedelTextDegeri);
     }
-
+    public void BedelOdeUlen()
+    {
+        PlayerPrefs.SetInt("KamyonKareAlanTextDegeri" + _kamyonNo, PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + _kamyonNo) - 10);
+        _kareAlanBedel.text = "$" + PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + _kamyonNo).ToString();
+        ;
+    }
 }

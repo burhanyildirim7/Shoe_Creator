@@ -33,17 +33,6 @@ public class BedelOdemeScrit : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //_paraIcinTimer = 0;
-        /*if (other.gameObject.tag=="money")
-        {
-            PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)-10);
-            if (PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)<=0)
-            {
-                PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, 0);
-            }
-            _bedelAlaniTexti.text = "$" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi);
-
-        }*/
         if (other.tag == "BedelOdemeMoney")
         {
             BedelOdeUlen();
@@ -53,17 +42,6 @@ public class BedelOdemeScrit : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _paraIcinTimer += Time.deltaTime;
-       /* if (other.gameObject.tag=="Player"&& PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2")>0)
-        {
-            if (_paraIcinTimer > 0.2f)
-            {
-                PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi + "2", PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2") - 10);
-                _paraIcinTimer = 0;
-                paraOde(other.gameObject);
-                Debug.Log("DEEEEGEGERERER:" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi + "2"));
-
-            }
-        }*/
 
     }
     private void OnTriggerExit(Collider other)
@@ -80,9 +58,7 @@ public class BedelOdemeScrit : MonoBehaviour
     public void BedelOdeUlen()
     {
         PlayerPrefs.SetInt(_bedelTextiPlayerPrefAdi, PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi)-10);
-        // _bedelText.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _bedelText.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
         _bedelAlaniTexti.text = "$" + PlayerPrefs.GetInt(_bedelTextiPlayerPrefAdi).ToString();
-        //_objeAcmaScript.ObjeAcmaKontrolEt();
     }
 
 

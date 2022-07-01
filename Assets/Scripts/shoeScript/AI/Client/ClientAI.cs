@@ -25,7 +25,7 @@ public class ClientAI : MonoBehaviour
         SiraPointleri = new List<GameObject>(),
         KasaPointleri = new List<GameObject>();
     public Animator Kasiyer1, Kasiyer2;
-
+    public GameObject paraGrubu1,paraGrubu2;
     private float ramSayac;
 
     private float _timer;

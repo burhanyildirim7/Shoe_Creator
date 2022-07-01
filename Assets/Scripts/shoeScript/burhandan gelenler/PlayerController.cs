@@ -72,6 +72,11 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ParaAnim());
         }
+        if (other.gameObject.name == "Kamyoncu")
+        {
+
+            _kalanBedel = PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + other.GetComponent<KamyonTetikleme>()._kamyonNo);
+        }
         if (other.gameObject.name== "BedelCollider")
         {
             
@@ -92,10 +97,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Cube" && other.gameObject.transform.parent.transform.GetChild(0).name == "BedelCanvas")
+        if (other.gameObject.name == "Kamyoncu")
         {
-            //_velocityX = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityX;
-            //_velocityZ = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityZ;
+            _velocityX = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityX;
+            _velocityZ = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityZ;
 
 
             if (_velocityX == 0 || _velocityZ == 0)
@@ -109,9 +114,54 @@ public class PlayerController : MonoBehaviour
                         _paraUI.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _paraUI.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
                         GameObject para = Instantiate(_bedelOdemePara, _moneySpawnPoint.transform.position, Quaternion.identity);
                         para.transform.rotation = Quaternion.Euler(90, 0, 0);
-                        //para.transform.DOMove(other.gameObject.transform.position, 1f);
                         para.transform.DOJump(other.gameObject.transform.position, 5, 1, 1f);
-                        //other.GetComponent<BedelOdemeler>().BedelOdeUlen();
+                        PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - 10);
+                        UIController.instance.SetGamePlayScoreText();
+                        _kalanBedel -= 10;
+
+                        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+                        _stayTimer = 0;
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+
+
+        }
+        else
+        {
+
+        }
+        if (other.gameObject.name == "Cube" && other.gameObject.transform.parent.transform.GetChild(0).name == "BedelCanvas")
+        {
+            _velocityX = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityX;
+            _velocityZ = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityZ;
+
+
+            if (_velocityX == 0 || _velocityZ == 0)
+            {
+                if (PlayerPrefs.GetInt("Money") > 0 && _kalanBedel > 0)
+                {
+                    _stayTimer += Time.deltaTime;
+
+                    if (_stayTimer > 0.1f)
+                    {
+                        _paraUI.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _paraUI.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
+                        GameObject para = Instantiate(_bedelOdemePara, _moneySpawnPoint.transform.position, Quaternion.identity);
+                        para.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        para.transform.DOJump(other.gameObject.transform.position, 5, 1, 1f);
                         PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - 10);
                         UIController.instance.SetGamePlayScoreText();
                         _kalanBedel -= 10;
@@ -143,8 +193,8 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.name == "BedelCollider")
         {
-            //_velocityX = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityX;
-            //_velocityZ = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityZ;
+            _velocityX = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityX;
+            _velocityZ = GameObject.FindGameObjectWithTag("Player").GetComponent<JoystickController>()._velocityZ;
 
 
             if (_velocityX == 0 || _velocityZ == 0)
@@ -158,9 +208,7 @@ public class PlayerController : MonoBehaviour
                         _paraUI.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.2f).OnComplete(() => _paraUI.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
                         GameObject para = Instantiate(_bedelOdemePara, _moneySpawnPoint.transform.position, Quaternion.identity);
                         para.transform.rotation = Quaternion.Euler(90, 0, 0);
-                        //para.transform.DOMove(other.gameObject.transform.position, 1f);
                         para.transform.DOJump(other.gameObject.transform.position, 5, 1, 1f);
-                        //other.GetComponent<BedelOdemeler>().BedelOdeUlen();
                         PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - 10);
                         UIController.instance.SetGamePlayScoreText();
                         _kalanBedel -= 10;

@@ -9,7 +9,7 @@ public class JoystickController : MonoBehaviour
     public Rigidbody _rigidbody;
 
     [SerializeField] private Animator _animator;
-
+    public float _velocityX,_velocityZ;
     public void FixedUpdate()
     {
         if (GameController.instance.isContinue == true && GameController.instance._kameraHareketli == false)
@@ -22,7 +22,8 @@ public class JoystickController : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
             }
-
+            _velocityX = _rigidbody.velocity.x;
+            _velocityZ = _rigidbody.velocity.z;
             if (_rigidbody.velocity.x != 0 || _rigidbody.velocity.z != 0)
             {
                 if (transform.GetComponent<ObjeToplamaPlayer>()._cantadakilerinSayisiIcinListe.Count>0)
@@ -63,7 +64,7 @@ public class JoystickController : MonoBehaviour
         }
         else
         {
-
+            _rigidbody.velocity = Vector3.zero;
         }
 
     }

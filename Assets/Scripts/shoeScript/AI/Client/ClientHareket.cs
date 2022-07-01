@@ -40,7 +40,7 @@ public class ClientHareket : MonoBehaviour
     [SerializeField] Animator _ClientAnim;
     private bool AnimIcin;
     [SerializeField] Animator _kasiyer1, _kasiyer2;
-
+    [SerializeField] GameObject _moneyGrubu1, _moneyGrubu2;
 
     private void Awake()
     {
@@ -63,6 +63,8 @@ public class ClientHareket : MonoBehaviour
         _ClientAnim.SetBool("walking", true);
         _kasiyer1 = _aiHareketKontrol.Kasiyer1;
         _kasiyer2 = _aiHareketKontrol.Kasiyer2;
+        _moneyGrubu1 = _aiHareketKontrol.paraGrubu1;
+        _moneyGrubu2 = _aiHareketKontrol.paraGrubu2;
     }
 
 
@@ -246,7 +248,7 @@ public class ClientHareket : MonoBehaviour
         _ClientAnim.SetBool("carryidle", false);
         _ClientAnim.SetBool("carrywalk", false);
 
-        if (_kasaNumber == 1)
+        if (_kasaNumber == 0)
         {
             _kasiyer1.SetBool("pickitem", true);
         }
@@ -268,13 +270,15 @@ public class ClientHareket : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (_kasaNumber == 1)
+        if (_kasaNumber == 0)
         {
             _kasiyer1.SetBool("pickitem", false);
+            _moneyGrubu1.transform.GetComponent<moneyGrubuKontrolu>().paraEklensinMi = true;
         }
         else
         {
             _kasiyer2.SetBool("pickitem", false);
+            _moneyGrubu2.transform.GetComponent<moneyGrubuKontrolu>().paraEklensinMi = true;
         }
         _alinacakAyakkabiObjesi.transform.DOLocalJump(Vector3.zero, 3f, 1, 0.5f);//KOLI SEKLINDE ELINE GELIYOR
         _ClientAnim.SetBool("carryidle", true);
