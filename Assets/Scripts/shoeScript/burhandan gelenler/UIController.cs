@@ -171,6 +171,7 @@ public class UIController : MonoBehaviour
         //WinPanel.SetActive(false);
         //LoosePanel.SetActive(false);
         GamePanel.SetActive(false);
+        SetTapToStartScoreText();
         tapToStartScoreText.text = PlayerPrefs.GetInt("Money").ToString();
     }
 

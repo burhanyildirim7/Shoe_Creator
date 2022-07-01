@@ -72,17 +72,17 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ParaAnim());
         }
-        if (other.gameObject.name == "Kamyoncu"&& other.gameObject.GetComponent<KamyonTetikleme>()._kamyonNo!=1)
+        if (other.gameObject.name == "Kamyoncu" && other.gameObject.GetComponent<KamyonTetikleme>()._kamyonNo != 1)
         {
 
             _kalanBedel = PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + other.GetComponent<KamyonTetikleme>()._kamyonNo);
         }
-        if (other.gameObject.name== "BedelCollider")
+        if (other.gameObject.name == "BedelCollider")
         {
-            
+
             _kalanBedel = PlayerPrefs.GetInt(other.GetComponent<ReyonKontrol>()._reyonAdi);
         }
-        if (other.gameObject.name == "Cube"&& other.gameObject.transform.parent.transform.GetChild(0).name == "BedelCanvas")
+        if (other.gameObject.name == "Cube" && other.gameObject.transform.parent.transform.GetChild(0).name == "BedelCanvas")
         {
 
             _kalanBedel = PlayerPrefs.GetInt(other.GetComponent<BedelOdemeScrit>()._bedelTextiPlayerPrefAdi);
@@ -308,7 +308,7 @@ public class PlayerController : MonoBehaviour
 
         Elephant.LevelStarted(1);
 
-        PlayerPrefs.SetInt("Money", 99999);
+        //PlayerPrefs.SetInt("Money", 99999);
         UIController.instance.SetGamePlayScoreText();
         UIController.instance.SetTapToStartScoreText();
 
