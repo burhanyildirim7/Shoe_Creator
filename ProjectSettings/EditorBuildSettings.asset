@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Elephant/elephant_scene.unity
     guid: 47a686e3b898646ae802a7832a649176
   - enabled: 1
-    path: Assets/Scenes/kolezyum/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/ShoeCreator/SHGameScene.unity
+    guid: fef8ede1af99043079841d3100fe3758
   m_configObjects: {}
