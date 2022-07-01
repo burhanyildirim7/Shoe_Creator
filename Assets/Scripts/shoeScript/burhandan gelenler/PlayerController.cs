@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ParaAnim());
         }
-        if (other.gameObject.name == "Kamyoncu")
+        if (other.gameObject.name == "Kamyoncu"&& other.gameObject.GetComponent<KamyonTetikleme>()._kamyonNo!=1)
         {
 
             _kalanBedel = PlayerPrefs.GetInt("KamyonKareAlanTextDegeri" + other.GetComponent<KamyonTetikleme>()._kamyonNo);

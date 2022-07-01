@@ -153,6 +153,10 @@ public class KamyonTetikleme : MonoBehaviour
             BedelOdeUlen();
             Destroy(other.gameObject);
         }
+        else
+        {
+
+        }
     }
     private void OnTriggerExit(Collider other)
     {
