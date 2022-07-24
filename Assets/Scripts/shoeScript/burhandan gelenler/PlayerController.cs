@@ -308,7 +308,7 @@ public class PlayerController : MonoBehaviour
 
         Elephant.LevelStarted(1);
 
-        //PlayerPrefs.SetInt("Money", 99999);
+        PlayerPrefs.SetInt("Money", 99999);
         UIController.instance.SetGamePlayScoreText();
         UIController.instance.SetTapToStartScoreText();
 
